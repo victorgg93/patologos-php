@@ -1,10 +1,12 @@
 <?php
 
+  // Cargue de Sesión 
   session_start();
 
+  // Validación de Sesión
   if (isset($_SESSION['user_id'])) {
     header('Location: /php-login-patologos/php-login');
-  }
+  } 
   require 'database.php';
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
@@ -17,7 +19,7 @@
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
-      // header("Location: /php-login");
+
       header("Location: /php-login-patologos/php-login");
     } else {
       $message = 'Sorry, those credentials do not match';

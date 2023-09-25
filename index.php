@@ -1,8 +1,10 @@
 <?php
   session_start();
 
+// Archivo de Conexión
   require 'database.php';
 
+  // Validación de Credenciales
   if (isset($_SESSION['user_id'])) {
     $records = $conn->prepare('SELECT id, email, password FROM users WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
